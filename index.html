@@ -192,11 +192,15 @@
         </div>
 
         <div id="mobileMenu"
-            class="fixed top-0 right-0 h-full w-72 bg-black/90 backdrop-blur-xl border-l border-gray-800 transform translate-x-full transition-transform duration-300 ease-in-out z-50">
-
+            class="fixed top-[88px] right-0 h-full w-72 bg-black/90 backdrop-blur-xl border-l border-gray-800 transform translate-x-full transition-transform duration-300 ease-in-out z-[60]">
+            <div id="overlay" class="fixed inset-0 bg-black/50 hidden z-40">
+            </div>
             <!-- <div id="mobileMenu" class="hidden md:hidden bg-black border-t border-gray-800"> -->
 
             <div class="flex flex-col p-6 gap-4">
+                <button id="closeBtn" class="text-3xl text-right">
+                    ✕
+                </button>
 
                 <a href="#home" class="hover:text-primary transition-colors duration-300">Beranda</a>
                 <a href="#advantages" class="hover:text-primary transition-colors duration-300">Keunggulan</a>
@@ -771,13 +775,13 @@
                 hover:-translate-y-2
                 transition duration-300">
 
-                    <img src="assets/Images/1.jpeg" loading="lazy" class="w-full h-64 object-cover"
-                        alt="Before Kaca Film">
+                    <<img src="assets/Images/1.jpeg" loading="lazy" decoding="async" class="w-full h-64 object-cover"
+                        alt="Before pemasangan kaca film mobil Surabaya">>
 
-                    <div class="p-4">
-                        <p class="text-primary font-semibold">Before</p>
-                        <p class="text-gray-400 text-sm">Kaca standar pabrik tanpa perlindungan panas.</p>
-                    </div>
+                        <div class="p-4">
+                            <p class="text-primary font-semibold">Before</p>
+                            <p class="text-gray-400 text-sm">Kaca standar pabrik tanpa perlindungan panas.</p>
+                        </div>
 
                 </div>
 
@@ -1051,6 +1055,7 @@
 
     </section>
 
+    <!-- SLIDER -->
     <script>
 
         const track = document.getElementById("testimonialTrack");
@@ -1134,16 +1139,44 @@
 
     <script>
         const menuBtn = document.getElementById("menuBtn");
+        const closeBtn = document.getElementById("closeBtn");
         const mobileMenu = document.getElementById("mobileMenu");
+        const overlay = document.getElementById("overlay");
+
 
         menuBtn.addEventListener("click", () => {
-            mobileMenu.classList.toggle("translate-x-full");
+
+            mobileMenu.classList.remove("translate-x-full");
+            overlay.classList.remove("hidden");
+
         });
 
+
+        closeBtn.addEventListener("click", () => {
+
+            mobileMenu.classList.add("translate-x-full");
+            overlay.classList.add("hidden");
+
+        });
+
+
+        overlay.addEventListener("click", () => {
+
+            mobileMenu.classList.add("translate-x-full");
+            overlay.classList.add("hidden");
+
+        });
+
+
         document.querySelectorAll("#mobileMenu a").forEach(link => {
+
             link.addEventListener("click", () => {
+
                 mobileMenu.classList.add("translate-x-full");
+                overlay.classList.add("hidden");
+
             });
+
         });
     </script>
 
